@@ -1,0 +1,9 @@
+# open file vim option -b
+vim -b <file-name>
+# vim hex editing mode
+:%!xxd -p
+# vim save method
+:%!xxd =p -r
+:wq!
+# display hexa
+hexdump -C <file-name> | head -n <number>
