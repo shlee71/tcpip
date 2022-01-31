@@ -6,7 +6,7 @@
 #include <unistd.h> 
 #include "shared_memory.h"
 
-#define KEY_ID  1234
+#define KEY_ID  1234567
 
 int main()
 {
@@ -46,4 +46,24 @@ int main()
 		break;
 	}
 
+	printf("\n### Shared memory before detached shmdt() ###\n");
+	system("ipcs -m");
+
+	shmdt(shared_memory);
+	printf("### Shared memory after detached shmdt() ###\n");
+	system("ipcs -m");
+
+	// remove shared memory
+    if ( -1 == shmctl( shmid, IPC_RMID, 0))
+	{
+		printf( "Shared memor remove failed\n\n");
+		return -1;
+	}
+	else
+	{
+		printf( "Shared memory delete success\n\n");
+	}
+    printf("### Shared memory after shmctl() ###\n");
+	system("ipcs -m");
+	return 0;
 }

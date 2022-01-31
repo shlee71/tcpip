@@ -6,7 +6,7 @@
 #include <unistd.h> 
 #include "shared_memory.h"
 
-#define KEY_ID  1234
+#define KEY_ID  1234567
 
 int main()
 {
