@@ -27,6 +27,6 @@ int main(int argc, char **argv)
 
 void handler(int sig)
 {
-    signal(SIGINT, handler); // signal handling can be only once depending on OS
-    printf("received signal %d \n", sig);
+    signal(SIGINT, handler); // signal handling can be only once depending on the OS
+    printf(" received signal %d \n", sig);
 }

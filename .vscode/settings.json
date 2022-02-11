@@ -18,6 +18,8 @@
   "C_Cpp_Runner.warningsAsError": false,
   "files.associations": {
     "tcp.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "ssl.h": "c",
+    "err.h": "c"
   }
 }

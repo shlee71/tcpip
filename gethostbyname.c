@@ -6,6 +6,16 @@
        int h_length;       // Length of Address
        char **h_addr_list; // List of Address
    }
+
+   EXECUTION Method : gethostbyname shlee.centos8.com
+   RESULT :   
+        Officially name : shlee.centos8.com.localdomain
+
+        Aliases--------
+        Address Type : AF_INET
+        IP Address------
+        192.168.110.128
+
  */
 #include <stdio.h>
 #include <stdlib.h>

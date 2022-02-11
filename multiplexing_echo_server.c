@@ -44,6 +44,7 @@ int main( int argc, char **argv)
 
     int fds_max;
 	
+	int str_len;
 	char message[BUFSIZE+1];
     struct timeval timeout;
 	
@@ -93,7 +94,7 @@ int main( int argc, char **argv)
     // 3 : server socket 
     printf("fds_max =[%d]\n", fds_max);
 
-    int fds, str_len, result;
+    int fds, result;
     int clnt_sock, clnt_len;
     struct sockaddr_in clnt_addr;
     while(1)

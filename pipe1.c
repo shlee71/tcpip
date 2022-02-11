@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv)
 {
-    int fd[2];
+    int fd[2]; // 0 : read pipe, 1 : write pipe
     char buffer[BUFSIZE+1];
     pid_t pid;
     int state;
@@ -25,8 +25,14 @@ int main(int argc, char **argv)
         puts("fork() error");
         exit(1);
     } else if ( pid == 0 ) {
-        write(fd[1],"Good\n", 6);
+        printf("child process write message ==> ");
+        memset(buffer, 0, sizeof(buffer));
+        memcpy(buffer,"Good Morning!!", BUFSIZE); 
+        write(fd[1], buffer, strlen(buffer));
+        printf("%s\n", buffer);
     } else {
+        sleep(2);
+        printf("parent process read message ==> ");
         read( fd[0], buffer, BUFSIZE);
         puts(buffer);
     }
