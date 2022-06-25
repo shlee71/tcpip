@@ -53,7 +53,7 @@ int main( int argc, char **argv)
 	
 	printf("write client socket [%s]\n", buf);
 	write(clnt_sock, buf, strlen(buf));
-	sleep(3);
+	sleep(2);
 	//
 	while( (read_len = read(clnt_sock, buf, FILE_BUFSIZE)) != 0 ) 
 	{

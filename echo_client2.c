@@ -40,7 +40,8 @@ int main( int argc, char **argv)
 	
     printf("connect() : request ip [%s] port[%s] \n", argv[1], argv[2]);
 
-    while(1) {
+    while(1) 
+    {
         // Message request from console
         memset(message, 0x00, sizeof(message));
         fputs("Please Input sending message ( q to quit )", stdout);
@@ -60,6 +61,8 @@ int main( int argc, char **argv)
         
         int recv_num = 0;
         int recv_len = 0;
+
+        //read message until expect message length being received.  
         for ( recv_len = 0 ; recv_len < send_len; )
         {
             recv_num = read(clnt_sock, &message[recv_len], BUFSIZE);

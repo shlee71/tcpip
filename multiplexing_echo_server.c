@@ -100,7 +100,7 @@ int main( int argc, char **argv)
     while(1)
     {
         tempfds = readfds;
-        timeout.tv_sec = 5;
+        timeout.tv_sec = 60;
         timeout.tv_usec = 0;
 
         //printbin(prt_str, &readfds, sizeof(readfds));
@@ -122,7 +122,7 @@ int main( int argc, char **argv)
         // 0,1,2 system fds skip
         for( fds = 3; fds < fds_max+1; fds++)
         {
-            printf("loop fds[%d], FD_ISSET[%d] [%4x] \n", fds, FD_ISSET(fds, &tempfds), tempfds);
+            //printf("loop fds[%d], FD_ISSET[%d] [%4x] \n", fds, FD_ISSET(fds, &tempfds), tempfds);
             if (FD_ISSET(fds, &tempfds))
             {
                 if(fds == serv_sock)
@@ -140,7 +140,9 @@ int main( int argc, char **argv)
                 }
                 else 
                 {
+                    memset(message, 0x00, BUFSIZE);
                     str_len = read(fds, message, BUFSIZE);
+                    printf("recv length[%d]/ message[%s]", str_len, message);
                     if( str_len == 0) // client close socket
                     {
                         FD_CLR(fds, &readfds);

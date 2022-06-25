@@ -20,6 +20,8 @@
     "tcp.h": "c",
     "stdio.h": "c",
     "ssl.h": "c",
-    "err.h": "c"
+    "err.h": "c",
+    "fpe.h": "c",
+    "fpe_locl.h": "c"
   }
 }

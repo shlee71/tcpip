@@ -3,25 +3,19 @@
    1. sudo firewall-cmd --zone=public --permanent --add-rich-rule='rule family="ipv4" source address="192.168.110.130/32" port protocol="tcp" port="8081" accept'  
    2. sudo cat /etc/firewalld/zones/public.xml
    3. sudo firewall-cmd --reload
-
    add incoming firewall IP & port ( UBUNTU )
    1. sudo ufw allow from 192.168.110.128 to any port 8081
  
    network check
    1. sudo netstat -tulp
-
    open file descriptor
    1. lsof -p <pid>  : ex. lsof -p 28290
-
    Pre-arrangement : make privatekey.pem , cert.pem
      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myprivatekey.pem -out mycert.pem
-
    compile method
      gcc -Wall -o ssl_server ssl_server.c  -L/usr/lib -lssl -lcrypto
-
    execution
      ./ssl_server 8081
-
  */
 #include <errno.h>
 #include <unistd.h>
@@ -159,7 +153,6 @@ void Servlet(SSL* ssl)
 <BlogType>Embedede and c\c++<\BlogType>\
 <Author>amlendra<Author>\
 <\Body>";
-
 const char *cpValidMessage="<Body>\
 <UserName>shlee<UserName>\
 <Password>1234<Password>\
@@ -235,7 +228,8 @@ int main(int argc, char **argv)
     ctx = InitServerCTX();
 
     /* load certs : made by openssl Server*/
-    LoadCertificates(ctx, "mycert.pem", "myprivatekey.pem"); 
+    LoadCertificates(ctx, "mycert.pem", "myprivatekey.pem");
+
     /* create server socket */
     serv_sock = OpenListener(atoi(port));
 
