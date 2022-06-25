@@ -49,7 +49,7 @@ int main( int argc, char **argv)
     // TIME_NOWAIT
     socklen_t opt = 1;
     setsockopt(serv_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
-    // Nagle algoritm off : netinet/tcp.h 추가 필수
+    // Nagle algoritm off : netinet/tcp.h should be added
     socklen_t opt_val = 1;
     setsockopt(serv_sock, IPPROTO_TCP, TCP_NODELAY, &opt_val, sizeof(opt_val));
 

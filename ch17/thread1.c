@@ -1,5 +1,6 @@
 /*
  * thread1.c
+ * gcc -D_REENTRANT thread1.c -o thread1 -lpthread
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -32,7 +33,8 @@ void *thread_function(void *arg)
     int i;
     for ( i=0 ; i< 3; i++ )
     {
-        sleep(2);
+        sleep(1);
         printf("Executing Thread Function [%d]!!!\n", i);
     }
 }
+

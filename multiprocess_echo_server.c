@@ -9,7 +9,7 @@
    1. sudo ufw allow from 192.168.110.128 to any port 9999 ( proto tcp )
  
    network check
-   1. sudo netstat -tulpn
+   1. sudo netstat -antulpn
 
    display TCP open port
    1. netstat -vatn | grep 9999
