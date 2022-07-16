@@ -17,7 +17,7 @@ char thread2[] = "B Thread";
 char thread3[] = "C Thread";
 
 sem_t bin_sem;
-int sum = 0;
+int number = 0;
 
 int main( int argc, char **argv)
 {
@@ -52,10 +52,10 @@ void *thread_send(void *arg)
 
     for ( int i= 0 ; i < 4 ; i++ )
     {
-        while( sum != 0)
+        while( number != 0)
             sleep(1);
-        sum ++;
-        printf("executed : %s, sum : %d \n", (char*)arg, sum);
+        number ++;
+        printf("executed : %s, number : %d \n", (char*)arg, number);
         sem_post(&bin_sem);
         sleep(1);
     }
@@ -68,8 +68,8 @@ void *thread_recv(void *arg)
     for ( int i= 0 ; i < 2; i++ )
     {
         sem_wait(&bin_sem);
-        sum --;
-        printf("executed : %s, sum : %d \n", (char*)arg, sum);
+        number --;
+        printf("executed : %s, number : %d \n", (char*)arg, number);
     }
 }
 

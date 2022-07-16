@@ -21,12 +21,12 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <pthread.h>
+#include <pthread.h>mv
 
 #define BUFSIZE 100
 
 void *clnt_connection(void *arg);
-void send_message(char *message, int len);
+void send_message(char *message, int len, int clnt_sock);
 void error_handling(char *message);
 
 int clnt_number = 0;
@@ -103,7 +103,7 @@ void * clnt_connection(void *arg)
     int i;
 
     while(( str_len = read(clnt_sock, message, sizeof(message))) !=0)
-        send_message(message, str_len);
+        send_message(message, str_len, clnt_sock);
     
     pthread_mutex_lock(&mutx);
     for(i =0; i<clnt_number ; i++)
@@ -122,12 +122,17 @@ void * clnt_connection(void *arg)
     return 0;
 }
 
-void send_message(char *message, int len)
+void send_message(char *message, int len, int clnt_sock)
 {
     int i;
     pthread_mutex_lock(&mutx);
     for(i =0; i< clnt_number; i++)
-        write(clnt_sock_array[i], message, len);
+    {
+        if ( clnt_sock_array[i] != clnt_sock )
+        {
+            write(clnt_sock_array[i], message, len);
+        }        
+    }
     pthread_mutex_unlock(&mutx);
 }
 void error_handling(char *message)
